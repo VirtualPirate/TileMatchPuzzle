@@ -53,16 +53,13 @@
             let squares = document.querySelectorAll(".square")
             squares.forEach(card => {
                 card.className = "square";
-                // card.classList.remove("fixed")
-                // card.classList.remove("image_show")
-                // card.classList.add("image_hide")
-                // card.classList.forEach
             })
             relocate(squares)
         }
 
-        var click_audio = new Audio("audio/onclick_item.wav");
+        var click_audio = new Audio("audio/onclick_item.wav")
         var match_audio = new Audio("audio/matched.wav")
+
         var count = 0
         var selected_items = []
 
@@ -102,9 +99,6 @@
 
 
             card.addEventListener("click", function clickfunc(event){
-                // console.log(count)
-                // console.log(card.classList.contains("image_1"))
-                // count += 1
                 if(!card.classList.contains("fixed")){
                     click_audio.play()
                     // card.classList.add("rotate")
@@ -122,18 +116,12 @@
 
                         sleep(500).then(() => {
                             card.classList.remove("rotate")
-
-                            // console.log("selected_items[0].classList.toString() = ", selected_items[0].classList.toString())
-                            // console.log("selected_items[1].classList.toString() = ", selected_items[1].classList.toString())
                             console.log("count: ", count)
                             if(count == 1){
-                                console.log(selected_items.length)
-                                console.log(selected_items[0].classList.toString())
-                                console.log(selected_items[1].classList.toString())
 
                                 if(selected_items[0].classList.toString() === selected_items[1].classList.toString()){
                                     console.log("Inside if statement")
-                                    match_audio.play();
+                                    match_audio.play()
                                     selected_items[0].classList.add("fixed")
                                     selected_items[1].classList.add("fixed")
                                     selected_items.splice(0, selected_items.length)
@@ -147,7 +135,6 @@
 
                                     selected_items.splice(0, selected_items.length) // empty array
                                     count = 0
-                                    console.log("cleared_array", selected_items)
                                     return
                                 }
                             }
@@ -161,10 +148,7 @@
                 
                 
             })
-            console.log("ran")
         })
-
-        console.log(squares)
 
         function relocate(squares){
 
