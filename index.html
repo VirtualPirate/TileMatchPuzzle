@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="download_button.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-content">
+        <div class="game-space">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+
+
+        </div>
+        <div class="download-button icon-button" onclick="reset_buttons()">
+            <!-- <img src="../icons/download_icon_1.svg" class="text-icon download-icon" alt=""> -->
+            <span style="padding-left: 20px; padding-right: 20px;">RESET</span>
+        </div>
+    </div>
+
+    <!-- <button>
+        Reset
+    </button> -->
+    <script>
+
+        function sleep (time) {
+            return new Promise((resolve) => setTimeout(resolve, time));
+        }
+
+        function generate(number){ // generates a number between 0 and number, not including number
+            return Math.floor((Math.random() * number));
+        }
+
+        function reset_buttons(){
+            let squares = document.querySelectorAll(".square")
+            squares.forEach(card => {
+                card.className = "square";
+                // card.classList.remove("fixed")
+                // card.classList.remove("image_show")
+                // card.classList.add("image_hide")
+                // card.classList.forEach
+            })
+            relocate(squares)
+        }
+
+        var click_audio = new Audio("audio/onclick_item.wav");
+        var match_audio = new Audio("audio/matched.wav")
+        var count = 0
+        var selected_items = []
+
+        let squares = document.querySelectorAll(".square")
+        squares.forEach(card => {
+            // card.addEventListener("click", function clickfunc(event){
+            //     // console.log(count)
+            //     // console.log(card.classList.contains("image_1"))
+            //     // count += 1
+            //     // if(!card.classList.contains("fixed")){
+
+            //         // card.classList.add("rotate")
+            //         if(card.classList.contains("image_show")){
+            //             card.classList.remove("image_show")
+            //             card.classList.add("image_hide")
+            //         }
+            //         else if(card.classList.contains("image_hide")){
+            //             card.classList.add("rotate")
+            //             card.classList.remove("image_hide")
+            //             card.classList.add("image_show")
+            //         }else{
+            //             card.classList.add("rotate")
+            //             card.classList.add("image_show")
+            //         }
+            //         sleep(500).then(() => {
+            //             card.classList.remove("rotate")
+            //         })
+
+            //         // if(count == 1){
+
+            //         // }
+
+            //     // }
+                
+                
+            // })
+
+
+            card.addEventListener("click", function clickfunc(event){
+                // console.log(count)
+                // console.log(card.classList.contains("image_1"))
+                // count += 1
+                if(!card.classList.contains("fixed")){
+                    click_audio.play()
+                    // card.classList.add("rotate")
+                    if(card.classList.contains("image_show"))
+                        return
+                    else{
+                        if(!(selected_items.length === 2))
+                            selected_items.push(card)
+                        else
+                            return
+                        card.classList.add("rotate")
+                        card.classList.remove("image_hide")
+                        card.classList.add("image_show")
+                        
+
+                        sleep(500).then(() => {
+                            card.classList.remove("rotate")
+
+                            // console.log("selected_items[0].classList.toString() = ", selected_items[0].classList.toString())
+                            // console.log("selected_items[1].classList.toString() = ", selected_items[1].classList.toString())
+                            console.log("count: ", count)
+                            if(count == 1){
+                                console.log(selected_items.length)
+                                console.log(selected_items[0].classList.toString())
+                                console.log(selected_items[1].classList.toString())
+
+                                if(selected_items[0].classList.toString() === selected_items[1].classList.toString()){
+                                    console.log("Inside if statement")
+                                    match_audio.play();
+                                    selected_items[0].classList.add("fixed")
+                                    selected_items[1].classList.add("fixed")
+                                    selected_items.splice(0, selected_items.length)
+                                    count = 0
+                                    return
+                                }else{
+                                    selected_items[0].classList.add("image_hide")
+                                    selected_items[0].classList.remove("image_show")
+                                    selected_items[1].classList.add("image_hide")
+                                    selected_items[1].classList.remove("image_show")
+
+                                    selected_items.splice(0, selected_items.length) // empty array
+                                    count = 0
+                                    console.log("cleared_array", selected_items)
+                                    return
+                                }
+                            }
+
+                            count += 1
+                        })
+                    }
+                    
+
+                }
+                
+                
+            })
+            console.log("ran")
+        })
+
+        console.log(squares)
+
+        function relocate(squares){
+
+            let index_array = [...Array(16).keys()]
+            let image_number = 1
+            while(index_array.length){
+                let first_index = generate(index_array.length)
+                squares.item(index_array[first_index]).classList.add(`image_${image_number}`)
+                index_array.splice(first_index, 1)
+
+                let second_index = generate(index_array.length)
+                squares.item(index_array[second_index]).classList.add(`image_${image_number}`)
+                index_array.splice(second_index, 1)
+                image_number += 1 
+
+            }
+        }
+
+        relocate(squares)
+
+
+    </script>
+    <link rel="stylesheet" href="style.css">
+</body>
+</html>

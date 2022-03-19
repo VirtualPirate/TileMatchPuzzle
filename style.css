@@ -1,0 +1,116 @@
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.game-space {
+    width: min-content;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1rem;
+    row-gap: 1rem;
+    padding: 2rem;
+    border: 2px solid #f0f0f0;
+    box-shadow: #555 0px 1px 2px 0px;
+    background-color: #daf0ff;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    background-color: #daf0ff;
+    box-shadow: #666 0 4px 8px 0px;
+    border-radius: 10px;
+    transform: rotateY(180deg);
+    border: 3px solid #8fd3fe;
+}
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .square{
+        width: 60px;
+        height: 60px;
+    }
+
+    .image_show {
+        background-size: 60px 60px;
+    }
+
+    .game-space {
+        padding: 0.5rem;
+        gap: 10px;
+    }
+    
+  }
+
+.image_hide {
+    animation: rotateAnimationHide 500ms linear;
+    animation-fill-mode: forwards;
+    background: #daf0ff;
+    /* transform: rotateY; */
+    
+}
+
+.rotate {
+    animation: rotateAnimation 500ms forwards;
+    /* animation-fill-mode: forwards; */
+}
+
+.fixed {
+    animation: bumpAnimation 500ms forwards;
+
+}
+
+.image_show.image_1 {background-image: url(graphics/1.svg);}
+.image_show.image_2 {background-image: url(graphics/2.svg);}
+.image_show.image_3 {background-image: url(graphics/3.svg);}
+.image_show.image_4 {background-image: url(graphics/4.svg);}
+.image_show.image_5 {background-image: url(graphics/5.svg);}
+.image_show.image_6 {background-image: url(graphics/6.svg);}
+.image_show.image_7 {background-image: url(graphics/7.svg);}
+.image_show.image_8 {background-image: url(graphics/8.svg);}
+
+@keyframes bumpAnimation {
+    0%{
+        transform: scale(1) rotateY(180deg);
+    }
+    50%{
+        transform: scale(1.1) rotateY(180deg);
+    }
+    100%{
+        transform: scale(1) rotateY(180deg);
+    }
+    
+}
+
+
+@keyframes rotateAnimation {
+    from {transform: rotateY(45deg);}
+    to{
+        transform: rotateY(180deg);
+    }
+}
+
+@keyframes rotateAnimationShow {
+    from {transform: rotateY(45deg);}
+    to{
+        transform: rotateY(180deg);
+        /* background: url(3.svg); */
+
+    }
+}
+
+@keyframes rotateAnimationHide {
+    0% {transform: rotateY(45deg);}
+    50% {
+        transform: rotateY(180deg) scale(1.1);
+    }
+    100%{
+        transform: rotateY(360deg) scale(1);
+        background: #daf0ff;
+    
+    }
+}
