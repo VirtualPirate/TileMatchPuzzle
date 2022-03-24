@@ -11,22 +11,54 @@
 <body>
     <div class="main-content">
         <div class="game-space">
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
+            <div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
+			<div class="square image-hide">
+				<img src="" alt="" class="image-content">
+			</div>
 
 
         </div>
@@ -72,17 +104,17 @@
             //     // if(!card.classList.contains("fixed")){
 
             //         // card.classList.add("rotate")
-            //         if(card.classList.contains("image_show")){
-            //             card.classList.remove("image_show")
-            //             card.classList.add("image_hide")
+            //         if(card.classList.contains("image-show")){
+            //             card.classList.remove("image-show")
+            //             card.classList.add("image-hide")
             //         }
-            //         else if(card.classList.contains("image_hide")){
+            //         else if(card.classList.contains("image-hide")){
             //             card.classList.add("rotate")
-            //             card.classList.remove("image_hide")
-            //             card.classList.add("image_show")
+            //             card.classList.remove("image-hide")
+            //             card.classList.add("image-show")
             //         }else{
             //             card.classList.add("rotate")
-            //             card.classList.add("image_show")
+            //             card.classList.add("image-show")
             //         }
             //         sleep(500).then(() => {
             //             card.classList.remove("rotate")
@@ -102,7 +134,7 @@
                 if(!card.classList.contains("fixed")){
                     click_audio.play()
                     // card.classList.add("rotate")
-                    if(card.classList.contains("image_show"))
+                    if(card.classList.contains("image-show"))
                         return
                     else{
                         if(!(selected_items.length === 2))
@@ -110,16 +142,16 @@
                         else
                             return
                         card.classList.add("rotate")
-                        card.classList.remove("image_hide")
-                        card.classList.add("image_show")
+                        card.classList.remove("image-hide")
+                        card.classList.add("image-show")
                         
 
                         sleep(500).then(() => {
                             card.classList.remove("rotate")
                             console.log("count: ", count)
                             if(count == 1){
-
-                                if(selected_items[0].classList.toString() === selected_items[1].classList.toString()){
+                                console.dir(selected_items[0])
+                                if(selected_items[0].firstElementChild.getAttribute("src") === selected_items[1].firstElementChild.getAttribute("src")){
                                     console.log("Inside if statement")
                                     match_audio.play()
                                     selected_items[0].classList.add("fixed")
@@ -128,10 +160,10 @@
                                     count = 0
                                     return
                                 }else{
-                                    selected_items[0].classList.add("image_hide")
-                                    selected_items[0].classList.remove("image_show")
-                                    selected_items[1].classList.add("image_hide")
-                                    selected_items[1].classList.remove("image_show")
+                                    selected_items[0].classList.add("image-hide")
+                                    selected_items[0].classList.remove("image-show")
+                                    selected_items[1].classList.add("image-hide")
+                                    selected_items[1].classList.remove("image-show")
 
                                     selected_items.splice(0, selected_items.length) // empty array
                                     count = 0
@@ -156,11 +188,11 @@
             let image_number = 1
             while(index_array.length){
                 let first_index = generate(index_array.length)
-                squares.item(index_array[first_index]).classList.add(`image_${image_number}`)
+                squares.item(index_array[first_index]).firstElementChild.setAttribute("src", `./graphics/${image_number}.svg`)
                 index_array.splice(first_index, 1)
 
                 let second_index = generate(index_array.length)
-                squares.item(index_array[second_index]).classList.add(`image_${image_number}`)
+                squares.item(index_array[second_index]).firstElementChild.setAttribute("src", `./graphics/${image_number}.svg`)
                 index_array.splice(second_index, 1)
                 image_number += 1 
 

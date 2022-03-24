@@ -33,6 +33,11 @@
     border: 3px solid #8fd3fe;
 }
 
+.square > img {
+    display: none;
+    border-radius: 10px;
+}
+
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
     .square{
@@ -40,7 +45,7 @@
         height: 60px;
     }
 
-    .image_show {
+    .image-show {
         background-size: 60px 60px;
     }
 
@@ -48,10 +53,15 @@
         padding: 0.5rem;
         gap: 10px;
     }
+
+    img.image-content {
+        height: 60px;
+        width: 60px;
+    }
     
   }
 
-.image_hide {
+.image-hide {
     animation: rotateAnimationHide 500ms linear;
     animation-fill-mode: forwards;
     background: #daf0ff;
@@ -69,14 +79,14 @@
 
 }
 
-.image_show.image_1 {background-image: url(graphics/1.svg);}
-.image_show.image_2 {background-image: url(graphics/2.svg);}
-.image_show.image_3 {background-image: url(graphics/3.svg);}
-.image_show.image_4 {background-image: url(graphics/4.svg);}
-.image_show.image_5 {background-image: url(graphics/5.svg);}
-.image_show.image_6 {background-image: url(graphics/6.svg);}
-.image_show.image_7 {background-image: url(graphics/7.svg);}
-.image_show.image_8 {background-image: url(graphics/8.svg);}
+img.image-content {
+    display: none;
+    border-radius: 7px;
+}
+
+.image-show > img {
+    display: block;
+}
 
 @keyframes bumpAnimation {
     0%{
