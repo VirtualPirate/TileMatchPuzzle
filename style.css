@@ -57,6 +57,11 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
+
+    body {
+        background-image: url(/graphics/background-small.png);
+        background-repeat: no-repeat;
+    }
     /* For mobile phones: */
     .square{
         width: 60px;
