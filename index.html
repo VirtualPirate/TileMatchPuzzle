@@ -127,11 +127,11 @@
                 
                 
             // })
-
+            let click_audio = new Audio("audio/onclick_item.wav")
+            let match_audio = new Audio("audio/matched.wav")
 
             card.addEventListener("click", function clickfunc(event){
-                var click_audio = new Audio("audio/onclick_item.wav")
-                var match_audio = new Audio("audio/matched.wav")
+                
                 if(!card.classList.contains("fixed")){
                     click_audio.play()
                     // card.classList.add("rotate")
