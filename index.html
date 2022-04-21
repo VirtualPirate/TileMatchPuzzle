@@ -63,7 +63,6 @@
 
         </div>
         <div class="download-button icon-button" onclick="reset_buttons()">
-            <!-- <img src="../icons/download_icon_1.svg" class="text-icon download-icon" alt=""> -->
             <span style="padding-left: 20px; padding-right: 20px;">RESET</span>
         </div>
     </div>
@@ -89,8 +88,8 @@
             relocate(squares)
         }
 
-        var click_audio = new Audio("audio/onclick_item.wav")
-        var match_audio = new Audio("audio/matched.wav")
+        // var click_audio = new Audio("audio/onclick_item.wav")
+        // var match_audio = new Audio("audio/matched.wav")
 
         var count = 0
         var selected_items = []
@@ -131,6 +130,8 @@
 
 
             card.addEventListener("click", function clickfunc(event){
+                var click_audio = new Audio("audio/onclick_item.wav")
+                var match_audio = new Audio("audio/matched.wav")
                 if(!card.classList.contains("fixed")){
                     click_audio.play()
                     // card.classList.add("rotate")
